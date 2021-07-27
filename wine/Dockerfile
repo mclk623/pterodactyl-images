@@ -5,11 +5,10 @@ apt update -y && \
 apt install git wget unzip p7zip-full aria2 git software-properties-common -y && \
 git clone https://github.com/ilikenwf/apt-fast.git && \
 cd apt-fast && \
-cp apt-fast /usr/bin/ && \
+mv apt-fast /usr/bin/ && \
 chmod +x /usr/bin/apt-fast && \
 cp apt-fast.conf /etc && \
 cd && \
-rm -fr apt-fast && \
 add-apt-repository ppa:cybermax-dexter/sdl2-backport && \
 apt-fast install libfaudio0 -y && \
 sed -i s/bionic/eoan/g /etc/apt/sources.list && \
