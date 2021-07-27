@@ -15,7 +15,7 @@ apt-get install winehq-stable -y && \
 wine --version && \
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
 echo 'Asia/Shanghai' >/etc/timezone  && \
-wget -O /usr/local/bin/winetricks http://ys-c.ys168.com/614099122/n524K7G265NTKSLuKRT/winetricks && \
+wget -O /usr/local/bin/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks && \
 chmod 755 /usr/local/bin/winetricks && \
 winetricks fakechinese && \
 winetricks wenquanyi && \
