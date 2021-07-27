@@ -1,7 +1,7 @@
 FROM ubuntu:19.10
 MAINTAINER Pterodactyl wine, <mclk623@163.com>
 RUN apt update -y && \
-apt install git wget unzip p7zip-full aria2 git software-properties-common -y && \
+apt-get install git wget unzip p7zip-full aria2 git software-properties-common -y && \
 git clone https://github.com/ilikenwf/apt-fast.git && \
 cd apt-fast && \
 mv apt-fast /usr/bin/ && \
