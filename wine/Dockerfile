@@ -17,7 +17,7 @@ ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
 echo 'Asia/Shanghai' >/etc/timezone  && \
 wget -O /usr/local/bin/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks && \
 chmod 755 /usr/local/bin/winetricks && \
-apt-get install cabextract && \
+apt-get install cabextract -y && \
 winetricks fakechinese && \
 winetricks wenquanyi && \
 winetricks corefonts
