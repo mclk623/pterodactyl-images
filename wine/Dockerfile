@@ -1,7 +1,6 @@
 FROM ubuntu:19.10
 MAINTAINER Pterodactyl wine, <mclk623@163.com>
-RUN sed -i "s/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list && \
-apt update -y && \
+RUN apt update -y && \
 apt install git wget unzip p7zip-full aria2 git software-properties-common -y && \
 git clone https://github.com/ilikenwf/apt-fast.git && \
 cd apt-fast && \
