@@ -11,7 +11,7 @@ wget -nc https://dl.winehq.org/wine-builds/winehq.key && \
 apt-key add winehq.key && \
 apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ groovy main' && \
 apt update && \
-apt-fast install winehq-stable -y && \
+apt-get install winehq-stable -y && \
 wine --version && \
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
 echo 'Asia/Shanghai' >/etc/timezone  && \
