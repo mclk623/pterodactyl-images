@@ -6,4 +6,5 @@ START_COMMAND=$(echo -e ${MODIFIED_STARTUP})
 echo -e ":/home/container$ ${START_COMMAND}"
 
 # 启动服务器
+echo 启动服务器
 ${MODIFIED_STARTUP}
