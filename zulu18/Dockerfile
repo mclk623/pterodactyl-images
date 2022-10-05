@@ -1,0 +1,15 @@
+FROM debian
+MAINTAINER Pterodactyl wine, <mclk623@163.com>
+RUN apt update -y && \
+apt-get install wget unzip lsof curl ca-certificates openssl git tar sqlite3 fontconfig libfreetype6 tzdata iproute2 libstdc++6 -y && \
+wget https://cdn.azul.com/zulu/bin/zulu18.32.13-ca-jdk18.0.2.1-linux_amd64.deb && \
+sudo apt install ./.deb && \
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+echo 'Asia/Shanghai' >/etc/timezone  && \
+useradd -d /home/container -m container
+USER container
+ENV USER=container HOME=/home/container
+ENV LANG C.UTF-8
+WORKDIR /home/container
+COPY ./entrypoint.sh /entrypoint.sh
+CMD ["/bin/bash", "/entrypoint.sh"]
