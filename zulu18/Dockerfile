@@ -8,6 +8,8 @@ apt install ./zulu18.32.13-ca-jdk18.0.2.1-linux_amd64.deb -y && \
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
 echo 'Asia/Shanghai' >/etc/timezone  && \
 useradd -d /home/container -m container
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 USER container
 ENV USER=container HOME=/home/container
 ENV LANG C.UTF-8
