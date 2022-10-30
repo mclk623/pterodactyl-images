@@ -1,0 +1,19 @@
+FROM debian
+MAINTAINER Pterodactyl wine, <mclk623@163.com>
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt update -y && \
+apt-get install wget unzip lsof curl ca-certificates openssl git fontconfig tzdata -y && \
+mkdir /usr/local/Adoptium-JDK && \
+cd /usr/local/Adoptium-JDK && \
+wget https://github.com/adoptium/temurin19-binaries/releases/download/jdk-19.0.1%2B10/OpenJDK19U-jdk_x64_linux_hotspot_19.0.1_10.tar.gz && \
+tar -xzvf OpenJDK19U-jdk_x64_linux_hotspot_19.0.1_10.tar.gz && \
+rm OpenJDK19U-jdk_x64_linux_hotspot_19.0.1_10.tar.gz && \
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+echo 'Asia/Shanghai' >/etc/timezone  && \
+useradd -d /home/container -m container
+USER container
+ENV USER=container HOME=/home/container
+ENV LANG C.UTF-8
+WORKDIR /home/container
+COPY ./entrypoint.sh /entrypoint.sh
+CMD ["/bin/bash", "/entrypoint.sh"]
