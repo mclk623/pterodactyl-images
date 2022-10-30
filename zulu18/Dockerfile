@@ -15,7 +15,6 @@ useradd -d /home/container -m container && \
 locale-gen zh_CN.UTF-8
 USER container
 ENV USER=container HOME=/home/container
-ENV LANG C.UTF-8
 WORKDIR /home/container
 COPY ./entrypoint.sh /entrypoint.sh
 CMD ["/bin/bash", "/entrypoint.sh"]
