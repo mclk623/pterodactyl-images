@@ -1,5 +1,5 @@
 FROM debian
-MAINTAINER Pterodactyl wine, <mclk623@163.com>
+MAINTAINER Pterodactyl Adoptium-JDK19, <mclk623@163.com>
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt update -y && \
 apt-get install wget unzip lsof curl ca-certificates openssl git fontconfig tzdata locales -y && \
