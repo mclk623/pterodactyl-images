@@ -1,4 +1,6 @@
 #!/bin/bash
+#JAVA信息
+java -version
 cd /home/container
 # 修改变量
 MODIFIED_STARTUP=$(echo $(echo -e ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g'))
