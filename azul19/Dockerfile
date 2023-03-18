@@ -3,7 +3,7 @@ MAINTAINER Pterodactyl azul19, <mclk623@163.com>
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt update -y && \
 apt-get upgrade && \
-apt-get install wget unzip lsof curl ca-certificates openssl git fontconfig tzdata -y locales && \
+apt-get install wget unzip lsof curl ca-certificates openssl git libstdc++6 fontconfig tzdata -y locales && \
 mkdir /usr/local/Adoptium-JDK && \
 cd /usr/local/Adoptium-JDK && \
 wget https://cdn.azul.com/zulu/bin/zulu19.32.13-ca-jdk19.0.2-linux_amd64.deb && \
