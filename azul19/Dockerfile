@@ -1,9 +1,12 @@
 FROM debian
 MAINTAINER Pterodactyl azul19, <mclk623@163.com>
 ARG DEBIAN_FRONTEND=noninteractive
-RUN apt update -y && \
+RUN sed -i 's#http://deb.debian.org#http://mirrors.tuna.tsinghua.edu.cn#g' /etc/apt/sources.list && \
+sed -i 's|security.debian.org/debian-security|mirrors.tuna.tsinghua.edu.cn/debian-security|g' /etc/apt/sources.list && \
+apt update -y && \
 apt-get upgrade && \
 apt-get install wget unzip lsof curl apt-transport-https ca-certificates openssl git libstdc++6 fontconfig tzdata -y locales && \
+sed -i 's#http://mirrors.tuna.tsinghua.edu.cn#https://mirrors.tuna.tsinghua.edu.cn#g' /etc/apt/sources.list && \
 mkdir /usr/local/Adoptium-JDK && \
 cd /usr/local/Adoptium-JDK && \
 wget https://cdn.azul.com/zulu/bin/zulu19.32.13-ca-jdk19.0.2-linux_amd64.deb && \
