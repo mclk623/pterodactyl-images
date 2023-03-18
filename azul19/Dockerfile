@@ -8,7 +8,6 @@ apt-get upgrade && \
 apt-get install wget unzip lsof curl apt-transport-https ca-certificates openssl git libstdc++6 fontconfig tzdata -y locales && \
 sed -i 's#http://mirrors.tuna.tsinghua.edu.cn#https://mirrors.tuna.tsinghua.edu.cn#g' /etc/apt/sources.list && \
 mkdir /usr/local/azul && \
-cd /usr/local/azul
 wget https://cdn.azul.com/zulu/bin/zulu19.32.13-ca-jdk19.0.2-linux_amd64.deb && \
 apt-get install /usr/local/azul/zulu19.32.13-ca-jdk19.0.2-linux_amd64.deb -y && \
 rm /usr/local/azul/zulu19.32.13-ca-jdk19.0.2-linux_amd64.deb && \
