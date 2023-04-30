@@ -1,22 +1,46 @@
-FROM debian
-MAINTAINER Pterodactyl azul19, <mclk623@163.com>
-ARG DEBIAN_FRONTEND=noninteractive
-RUN sed -i 's#http://deb.debian.org#http://mirrors.tuna.tsinghua.edu.cn#g' /etc/apt/sources.list && \
-sed -i 's|security.debian.org/debian-security|mirrors.tuna.tsinghua.edu.cn/debian-security|g' /etc/apt/sources.list && \
-apt update -y && \
-apt-get upgrade && \
-apt-get install wget unzip lsof curl apt-transport-https ca-certificates openssl git libstdc++6 fontconfig tzdata -y locales && \
-sed -i 's#http://mirrors.tuna.tsinghua.edu.cn#https://mirrors.tuna.tsinghua.edu.cn#g' /etc/apt/sources.list && \
-mkdir /usr/local/azul && \
-wget https://cdn.azul.com/zulu/bin/zulu19.32.13-ca-jdk19.0.2-linux_amd64.deb && \
-apt-get install /usr/local/azul/zulu19.32.13-ca-jdk19.0.2-linux_amd64.deb -y && \
-rm /usr/local/azul/zulu19.32.13-ca-jdk19.0.2-linux_amd64.deb && \
+
+
+RUN apk add --no-cache ca-certificates musl-locales musl-locales-lang openssl tzdata wget libstdc++
+
+
+ARG EDITION=extended
+
+RUN set -eux; \
+    ARCH="$(apk --print-arch)"; \
+    case "${ARCH}" in \
+       amd64|x86_64) \
+         if [ "${EDITION}" = "extended" ];then \
+           BINARY_URL='https://cdn.azul.com/zulu/bin/zulu19.32.13-ca-jdk19.0.2-linux_musl_x64.tar.gz'; \
+         fi \
+         ;; \
+       *) \
+         echo "Unsupported arch: ${ARCH}"; \
+         exit 1; \
+         ;; \
+    esac; \
+	  wget -O /tmp/openjdk.tar.gz ${BINARY_URL}; \
+	  mkdir -p /opt/java/openjdk; \
+	  tar --extract \
+	      --file /tmp/openjdk.tar.gz \
+	      --directory /opt/java/openjdk \
+	      --strip-components 1 \
+	      --no-same-owner \
+	  ; \
+    rm -rf /tmp/openjdk.tar.gz;
+
+ENV JAVA_HOME=/opt/java/openjdk \
+    PATH="/opt/java/openjdk/bin:$PATH"
+
+RUN echo Verifying install ... \
+    && echo javac --version && javac --version \
+    && echo java --version && java --version \
+    && echo Complete.
+    
+RUN adduser -D -h /home/container container && \
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
-echo 'Asia/Shanghai' >/etc/timezone  && \
-useradd -d /home/container -m container && \
-locale-gen zh_CN.UTF-8
+echo 'Asia/Shanghai' >/etc/timezone && \
+date -R
 USER container
 ENV USER=container HOME=/home/container
-WORKDIR /home/container
 COPY ./entrypoint.sh /entrypoint.sh
-CMD ["/bin/bash", "/entrypoint.sh"]
+CMD ["/bin/sh", "/entrypoint.sh"]
