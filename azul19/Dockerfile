@@ -1,3 +1,6 @@
+FROM alpine
+
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 
 RUN apk add --no-cache ca-certificates musl-locales musl-locales-lang openssl tzdata wget libstdc++
