@@ -1,6 +1,6 @@
 FROM debian
 ARG DEBIAN_FRONTEND=noninteractive
-ARG EDITION=extended
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 RUN apt update -y && \
 apt-get install lsof wget curl ca-certificates openssl git tar sqlite3 fontconfig libfreetype6 tzdata iproute2 libstdc++6 locales -y
 RUN  wget -O /tmp/openjdk.tar.gz https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-22.3.2/graalvm-ce-java17-linux-amd64-22.3.2.tar.gz && \
