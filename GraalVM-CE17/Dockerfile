@@ -1,9 +1,9 @@
 FROM debian
 ARG DEBIAN_FRONTEND=noninteractive
-ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
+ENV LC_ALL=C.UTF-8 LANG=C.UTF-8 LANGUAGE=C.UTF-8
 RUN apt update -y && \
-apt-get install lsof wget curl ca-certificates openssl git tar sqlite3 fontconfig libfreetype6 tzdata iproute2 libstdc++6 locales -y
-RUN  wget -O /tmp/openjdk.tar.gz https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-22.3.2/graalvm-ce-java17-linux-amd64-22.3.2.tar.gz && \
+apt-get install lsof wget curl ca-certificates openssl git tar sqlite3 fontconfig libfreetype6 tzdata iproute2 libstdc++6 locales -y && \
+wget -O /tmp/openjdk.tar.gz https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-22.3.2/graalvm-ce-java17-linux-amd64-22.3.2.tar.gz && \
 	  mkdir -p /opt/java/openjdk && \
 	  tar -xvf /tmp/openjdk.tar.gz -C /opt/java/openjdk/ && \
 	  ls /opt/java/openjdk/ && \
