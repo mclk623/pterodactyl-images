@@ -9,8 +9,8 @@ wget -O /tmp/openjdk.tar.gz https://oca.opensource.oracle.com/gds/GRAALVM_EE_JAV
 	  ls /opt/java/openjdk/ && \
        rm -rf /tmp/openjdk.tar.gz
 
-ENV JAVA_HOME=/opt/java/openjdk/graalvm-ce-java17-22.3.2 \
-    PATH="/opt/java/openjdk/graalvm-ce-java17-22.3.2/bin:$PATH"
+ENV JAVA_HOME=/opt/java/openjdk/graalvm-ee-java17-22.3.2 \
+    PATH="/opt/java/openjdk/graalvm-ee-java17-22.3.2/bin:$PATH"
 
 RUN echo Verifying install ... \
     && echo java --version && java --version \
