@@ -13,7 +13,7 @@ RUN set -eux; \
     case "${ARCH}" in \
        amd64|x86_64) \
          if [ "${EDITION}" = "extended" ];then \
-           BINARY_URL='https://github.com/adoptium/temurin19-binaries/releases/download/jdk-19.0.2%2B7/OpenJDK19U-jdk_x64_linux_hotspot_19.0.2_7.tar.gz'; \
+           BINARY_URL='https://github.com/adoptium/temurin19-binaries/releases/download/jdk-19.0.2%2B7/OpenJDK19U-jdk_x64_alpine-linux_hotspot_19.0.2_7.tar.gz'; \
          fi \
          ;; \
        *) \
