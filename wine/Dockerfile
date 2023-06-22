@@ -7,8 +7,8 @@ apt-get install lsof wget curl ca-certificates openssl git tar sqlite3 fontconfi
 dpkg --add-architecture i386 && \
 wget -nc -O /usr/share/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
 COPY ./winehq.list /etc/apt/sources.list.d/winehq.list
-RUN sudo apt update && \
-sudo apt install --install-recommends winehq-stable &&\
+RUN apt update && \
+apt install --install-recommends winehq-stable &&\
 wine --version
 RUN adduser -D -h /home/container container && \
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
