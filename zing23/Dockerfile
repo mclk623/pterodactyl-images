@@ -9,8 +9,8 @@ wget -O /tmp/openjdk.tar.gz https://cdn.azul.com/zing-zvm/ZVM23.06.0.0/zing23.06
 	  ls /opt/java/openjdk/ && \
        rm -rf /tmp/openjdk.tar.gz
 
-ENV JAVA_HOME=/opt/java/openjdk/graalvm-ee-java17-22.3.2 \
-    PATH="/opt/java/openjdk/graalvm-ee-java17-22.3.2/bin:$PATH"
+ENV JAVA_HOME=/opt/java/openjdk/zing23.06.0.0-2-jdk17.0.7-linux_x64 \
+    PATH="/opt/java/openjdk/zing23.06.0.0-2-jdk17.0.7-linux_x64/bin:$PATH"
 
 RUN echo Verifying install ... \
     && echo java --version && java --version \
